@@ -1,0 +1,55 @@
+@startuml
+
+class ListaEncadeada {
+    - Node primeiroNode
+    - Node ultimoNode
+    - String desc
+    + ListaEncadeada(String s)
+    + ListaEncadeada()
+    + void inserirNaFrente(Object insertItem)
+    + void inserirNoFinal(Object insertItem)
+    + Object removeDaFrente() throws Exception
+    + Object removeDoFinal() throws Exception
+    + boolean estaVazia()
+    + String toString()
+    + boolean localizaNode(Object obj)
+    + Iterator forwardIterator()
+    + Iterator reverseIterator()
+}
+
+class Node {
+    - Object dado
+    - Node proximo
+    + Node(Object o)
+    + Node(Object o, Node proximoNode)
+    + Object getObject()
+    + Node getProximo()
+}
+
+class ForwardIterator {
+    - Node currentNode
+    + ForwardIterator(Node startNode)
+    + boolean hasNext()
+    + Object next()
+}
+
+class ReverseIterator {
+    - List<Object> items
+    - int currentIndex
+    + ReverseIterator(Node startNode)
+    + boolean hasNext()
+    + Object next()
+}
+
+interface Iterator {
+    + boolean hasNext()
+    + Object next()
+}
+
+ListaEncadeada --> Node : possui >
+ForwardIterator ..|> Iterator
+ReverseIterator ..|> Iterator
+ListaEncadeada --> ForwardIterator : cria >
+ListaEncadeada --> ReverseIterator : cria >
+
+@enduml
